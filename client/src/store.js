@@ -10,8 +10,8 @@ export default new Vuex.Store({
     voted: false,
     selected: undefined,
     coords: {
-      lat: 0,
-      lng: 0
+      lat: 41.40338,
+      lng: 2.17403
     }
   },
   getters: {
@@ -33,7 +33,7 @@ export default new Vuex.Store({
   },
   actions: {
     LoadCharacters({ commit }){
-      axios.get('http://localhost:5000/characters')
+      axios.get('https://favouritecharacters.appspot.com/characters')
         .then(data => {
           let characters = data.data.characters
           commit('SET_CHARACTERS', characters)
@@ -45,21 +45,17 @@ export default new Vuex.Store({
       let lat = this.state.coords.lat
       let lng = this.state.coords.lng
 
-      axios.post('http://localhost:5000/voted', {lat: lat, lng:lng, character: id})
+      axios.post('https://favouritecharacters.appspot.com/voted', {lat: lat, lng:lng, character: id})
         .then(() => this.dispatch('LoadCharacters'))
     },
 
-    // GetLocation(state){
-    //   let x = undefined
+    // GetLocation({commit}){
     //   navigator.geolocation.getCurrentPosition((position)=>{
-    //      x = position
-    //     // commit('SET_LOCATION', x)
-    //   }). then(
-    //     state.coords.lat = x.coords.latitude,
-    //     state.coords.lng = x.coords.longitude
-    //   )
-      
-
+    //     return position
+    //   }).then(position =>{
+    //     let datapos = position
+    //     commit('SET_LOCATION', datapos)})
+    //    .catch(()=> console.log('an error ocurred while getting position')) 
     // }
   }
 })

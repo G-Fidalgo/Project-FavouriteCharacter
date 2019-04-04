@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="chartContainer">
       <h1>Votes counter</h1>
-      <svg width="1500" height="500" id="chart"></svg>
+      <svg width="1300" height="300" id="chart"></svg>
 
     </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 
      ];
     var x = d3.scaleBand()
-      .rangeRound([0, width]).padding(0.1)
+      .rangeRound([0, width*0.5]).padding(0.05)
       .domain(data.map(d => d.name));
     var y = d3.scaleLinear()
       .rangeRound([height * 0.3 - 20, 0])
@@ -72,6 +72,21 @@ export default {
 }
 #bars-style .Venom {
   fill: #374750
+}
+#chart{
+  padding-top: 20px;
+  
+}
+.chartContainer{
+  padding-top: 20px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+
 }
 </style>
 
